@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -18,8 +19,14 @@ import fi.haagahelia.course.web.UserDetailServiceImpl;
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
-	@Autowired
-	private UserDetailServiceImpl userDetailsService;
+	
+	//@Autowired
+	private UserDetailsService userDetailsService; // type of attribute -> interface
+	
+	// Constructor injection
+	public WebSecurityConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService; 
+	}
 
 	private static final AntPathRequestMatcher[] WHITE_LIST_URLS = { 
 			new AntPathRequestMatcher("/api/students**"),
