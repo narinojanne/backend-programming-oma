@@ -10,6 +10,12 @@ public class Message {
 		this.text = text;
 	}
 	
+	public Message() {
+		super();
+		this.id = 0;
+		this.text = null;
+	}
+	
 	public long getId() {
 		return id;
 	}

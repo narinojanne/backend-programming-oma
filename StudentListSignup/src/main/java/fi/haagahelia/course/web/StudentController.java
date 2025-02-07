@@ -18,11 +18,18 @@ import fi.haagahelia.course.domain.StudentRepository;
 
 @Controller
 public class StudentController {
-	@Autowired
+	//@Autowired
 	private StudentRepository repository; 
 
-	@Autowired
+	//@Autowired
 	private DepartmentRepository drepository; 
+	
+	// Constructor Injection
+	public StudentController(StudentRepository studentRepository, 
+				DepartmentRepository departmentRepository) {
+			this.repository = studentRepository; 
+			this.drepository = departmentRepository;
+    }
 	
 	// Show all students
     @RequestMapping(value="/login")

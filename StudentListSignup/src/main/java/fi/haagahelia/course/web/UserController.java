@@ -18,8 +18,13 @@ import fi.haagahelia.course.domain.AppUserRepository;
 
 @Controller
 public class UserController {
-	@Autowired
+	//@Autowired
     private AppUserRepository repository; 
+	
+	//Constructor Injection
+	public UserController(AppUserRepository appUserReporitory) {
+		this.repository = appUserReporitory; 
+	}
 	
     @RequestMapping(value = "signup")
     public String addStudent(Model model){

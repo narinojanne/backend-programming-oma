@@ -2,15 +2,14 @@ package fi.haagahelia.course.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -20,8 +19,8 @@ public class Department {
 	private Long departmentid;
 	private String name;
 	
-	@JsonIgnore
-	// or @JsonIgnoreProperties ("department") 
+	@JsonIgnoreProperties("department")  // ignoring 'department' attribute for all students
+	//@JsonIgnore   // ignoring students
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
 	private List<Student> students;
 	

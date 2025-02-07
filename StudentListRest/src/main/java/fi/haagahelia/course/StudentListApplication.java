@@ -22,18 +22,21 @@ public class StudentListApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner studentDemo(StudentRepository srepository, DepartmentRepository drepository) {
+	public CommandLineRunner studentDemo(StudentRepository studentReporitory, DepartmentRepository departmentRepository) {
 		return (args) -> {
 			log.info("save a couple of students");
-			drepository.save(new Department("IT"));
-			drepository.save(new Department("Business"));
-			drepository.save(new Department("Law"));
+			Department department1 = new Department("IT");
+			departmentRepository.save(department1);
+			Department department2 = new  Department("Business");
+			departmentRepository.save(department2);
+			Department department3 = new Department("Law");
+			departmentRepository.save(department3);
 			
-			srepository.save(new Student("John", "Johnson", "john@john.com", drepository.findByName("IT").get(0)));
-			srepository.save(new Student("Katy", "Kateson", "kate@kate.com", drepository.findByName("Business").get(0)));	
+			studentReporitory.save(new Student("John", "Johnson", "john@john.com", department1));
+			studentReporitory.save(new Student("Katy", "Kateson", "kate@kate.com", department2));	
 			
 			log.info("fetch all students");
-			for (Student student : srepository.findAll()) {
+			for (Student student : studentReporitory.findAll()) {
 				log.info(student.toString());
 			}
 
