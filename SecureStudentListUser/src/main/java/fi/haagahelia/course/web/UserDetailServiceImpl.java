@@ -16,8 +16,14 @@ import fi.haagahelia.course.domain.AppUserRepository;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService  {
 	
-	@Autowired
+	//@Autowired
 	AppUserRepository repository;
+	
+	// Constructor Injection
+	public UserDetailServiceImpl(AppUserRepository appUserRepository) {
+		this.repository = appUserRepository; 
+	}
+	
 
 
     @Override

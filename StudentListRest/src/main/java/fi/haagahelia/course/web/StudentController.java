@@ -18,30 +18,25 @@ import fi.haagahelia.course.domain.StudentRepository;
 @Controller
 public class StudentController {
 	
-	@Autowired
+	//@Autowired
 	private StudentRepository studentRepository; 
 
-	@Autowired
+	// @Autowired
 	private DepartmentRepository departmentRepository; 
+	
+	// Constructor Injection instead of @Autowired annotation
+	public StudentController(StudentRepository studentRepository, 
+			DepartmentRepository departmentRepository) {
+		this.studentRepository = studentRepository;
+		this.departmentRepository = departmentRepository;
+	}
 	
 	// Show all students
     @RequestMapping(value="/studentlist")
     public String studentList(Model model) {	
         model.addAttribute("students", studentRepository.findAll());
         return "studentlist";
-    }
-  
-	// RESTful service to get all students
-    @RequestMapping(value="/students", method = RequestMethod.GET)
-    public @ResponseBody List<Student> studentListRest() {	
-        return (List<Student>) studentRepository.findAll();
-    }    
-
-	// RESTful service to get student by id
-    @RequestMapping(value="/student/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Student> findStudentRest(@PathVariable("id") Long studentId) {	
-    	return studentRepository.findById(studentId);
-    }       
+    }      
     
     // Add new student
     @RequestMapping(value = "/add")

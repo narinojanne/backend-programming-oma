@@ -1,5 +1,7 @@
 package fi.haagahelia.course.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class Student {
     private String lastName;
     private String email;
     
-    // @JsonIgnoreProperties ("students") 
+    @JsonIgnoreProperties ("students")   // ignoring 'students' attribute of department
     @ManyToOne
     @JoinColumn(name = "departmentid")
     private Department department;

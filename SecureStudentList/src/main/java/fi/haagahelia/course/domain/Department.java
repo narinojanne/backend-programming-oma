@@ -2,6 +2,8 @@ package fi.haagahelia.course.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 @Entity
 public class Department {
@@ -10,6 +12,7 @@ public class Department {
 	private Long departmentid;
 	private String name;
 	
+	@JsonIgnoreProperties("department")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
 	private List<Student> students;
 	
