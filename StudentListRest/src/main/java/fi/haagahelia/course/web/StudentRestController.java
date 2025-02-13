@@ -35,7 +35,8 @@ public class StudentRestController {
 		// RESTful service to get student by id
 	    @RequestMapping(value="/students/{id}", method = RequestMethod.GET)
 	    public @ResponseBody Optional<Student> findStudentRest(@PathVariable("id") Long studentId) {	
-	    	return studentRepository.findById(studentId);
+	    	
+			return studentRepository.findById(studentId);
 	    }       
 	    
 	   // RESTful service to save new student
